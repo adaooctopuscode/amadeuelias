@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -c \"import docx\")",
+      "Bash(python3 -c ' *)",
+      "Bash(textutil -convert txt -stdout \"/Users/carlos_adao/Documents/2AEngenharia/Amadeu_Elias/MC-AMADEU ELIAS R0.docx\")",
+      "Bash(pip3 install *)"
+    ]
+  }
+}
