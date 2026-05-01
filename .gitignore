@@ -1,0 +1,9 @@
+# Arquivos temporários do Word/Excel
+~$*
+*.tmp
+
+# Backups gerados automaticamente
+*_backup.*
+
+# macOS
+.DS_Store
