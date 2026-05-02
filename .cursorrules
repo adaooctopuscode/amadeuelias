@@ -1,0 +1,95 @@
+# Regras Para O Cursor — Memorial Técnico Amadeu Elias
+
+## Contexto Do Projeto
+
+Projeto de edição do memorial técnico de ponte `MC-AMADEU ELIAS R0.docx` (~70 MB).
+Repositório: `adaooctopuscode/amadeuelias`
+
+## Comportamento Esperado
+
+- Sempre responder em **português**.
+- Antes de qualquer modificação no `.docx`, verificar se o Word está aberto e fechá-lo.
+- Após modificar, commitar e reabrir o Word.
+- Quando o usuário digitar `salvar`, executar `git add + commit + push` automaticamente.
+
+## Estrutura Do Documento
+
+O documento é um memorial técnico de ponte com 7 tabuleiros e as seguintes seções principais:
+
+| Seção | Conteúdo |
+|-------|----------|
+| C.4   | Trem Tipo TB-50 — 21 imagens (3 por tabuleiro) |
+| C.5   | Frenagem — 7 imagens + tabelas |
+| C.6   | Vento Longitudinal — 3 imagens |
+| C.7   | Empuxos — 4 imagens |
+
+## Fluxo Obrigatório Antes De Modificar O Documento
+
+```bash
+# 1. Verificar alterações pendentes
+git status
+
+# 2. Se houver alterações no .docx, commitar
+git add "MC-AMADEU ELIAS R0.docx" && git commit -m "Salva estado atual" && git push
+
+# 3. Fechar o Word
+osascript -e 'tell application "Microsoft Word" to if (count of documents) > 0 then close active document saving yes'
+```
+
+## Fluxo Obrigatório Após Modificar O Documento
+
+```bash
+# 1. Commitar
+git add "MC-AMADEU ELIAS R0.docx" && git commit -m "Descrição" && git push
+
+# 2. Reabrir no Word
+osascript -e 'tell application "Microsoft Word" to open "/Users/carlos_adao/Documents/2AEngenharia/Amadeu_Elias/MC-AMADEU ELIAS R0.docx"'
+```
+
+## Padrão De Figuras No Documento
+
+Cada figura tem 3 parágrafos consecutivos:
+1. Imagem centralizada, largura **5.5 polegadas**
+2. Legenda: `Figura N: Texto da legenda.` — centralizada
+3. Fonte: `Fonte: Software SCIA.` — centralizada
+
+## Imagens Do WhatsApp
+
+Imagens chegam em `~/Downloads/` com o padrão:
+`WhatsApp Image YYYY-MM-DD at HH.MM.SS.jpeg`
+
+O horário do arquivo corresponde ao horário de envio no WhatsApp. Use isso para mapear imagem → legenda.
+
+## Edição Do .docx
+
+- Usar **python-docx** para todas as edições.
+- Validar sempre com `unzip -t "MC-AMADEU ELIAS R0.docx"`.
+- Em caso de corrupção: `git checkout HEAD -- "MC-AMADEU ELIAS R0.docx"`.
+
+## Comando "salvar"
+
+Quando o usuário digitar apenas `salvar`:
+```bash
+git add "MC-AMADEU ELIAS R0.docx" && git commit -m "Atualiza memorial" && git push
+```
+
+## Legendas Padrão Por Seção
+
+**C.4 Trem Tipo TB-50** (por tabuleiro, 3 pistas cada):
+- `Carga móvel no Tabuleiro N - Pistas de tráfego X (Carga afastada do guarda rodas).`
+- `Carga móvel no Tabuleiro N - Pistas de tráfego Y (posicionado no centro da viga).`
+- `Carga móvel no Tabuleiro N - Pistas de tráfego Z (Carga afastada do guarda rodas).`
+
+**C.5 Frenagem:**
+- `Carga Frenagem no Tabuleiro N.`
+
+**C.6 Vento Longitudinal:**
+- `Carga de vento longitudinal nos Tabuleiros 1, 2 e 3.`
+- `Carga de vento longitudinal nos Tabuleiros 4, 5 e 6.`
+- `Carga de vento longitudinal no Tabuleiro 7.`
+
+**C.7 Empuxos:**
+- `Empuxo devido à sobrecarga no Encontro 1.`
+- `Empuxo devido ao solo no Encontro 1.`
+- `Empuxo devido à sobrecarga no Encontro 2.`
+- `Empuxo devido ao solo no Encontro 2.`
