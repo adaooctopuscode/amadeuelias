@@ -65,17 +65,22 @@ O agente atua como editor técnico de documentos Word. Ele deve:
 
 ## Fluxo De Trabalho Padrão
 
-### Antes de Modificar
+> **REGRA OBRIGATÓRIA:** Antes de qualquer atividade no documento, executar os passos 1-3. Após a atividade, executar os passos 4-6. Sem exceções.
+
+### Passo a Passo Completo
+
 ```bash
+# ANTES — sempre executar os 3 passos abaixo ANTES de modificar o documento
+
 # 1. Verificar git status
 git status
 
-# 2. Commitar se houver alterações
+# 2. Se houver alterações no .docx, commitar
 git add "MC-AMADEU ELIAS R0.docx"
-git commit -m "mensagem"
+git commit -m "Salva estado atual"
 git push
 
-# 3. Fechar Word via AppleScript
+# 3. Salvar e fechar o Word
 osascript << 'EOF'
 tell application "Microsoft Word"
     if (count of documents) > 0 then
@@ -84,16 +89,17 @@ tell application "Microsoft Word"
     end if
 end tell
 EOF
-```
 
-### Após Modificar
-```bash
-# 1. Commitar alterações
+# ------- EXECUTAR A ATIVIDADE NO DOCUMENTO -------
+
+# APÓS — sempre executar os 3 passos abaixo APÓS modificar o documento
+
+# 4. Commitar as alterações
 git add "MC-AMADEU ELIAS R0.docx"
 git commit -m "Descrição da alteração"
 git push
 
-# 2. Reabrir Word
+# 5. Reabrir o Word com o arquivo atualizado
 osascript -e 'tell application "Microsoft Word" to open "/Users/carlos_adao/Documents/2AEngenharia/Amadeu_Elias/MC-AMADEU ELIAS R0.docx"'
 ```
 

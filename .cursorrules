@@ -23,26 +23,20 @@ O documento é um memorial técnico de ponte com 7 tabuleiros e as seguintes se�
 | C.6   | Vento Longitudinal — 3 imagens |
 | C.7   | Empuxos — 4 imagens |
 
-## Fluxo Obrigatório Antes De Modificar O Documento
+## Fluxo Obrigatório — Sem Exceções
+
+> Antes de qualquer atividade no documento: salvar → fechar Word → executar → commitar → reabrir Word.
 
 ```bash
-# 1. Verificar alterações pendentes
+# ANTES de modificar o documento:
 git status
-
-# 2. Se houver alterações no .docx, commitar
 git add "MC-AMADEU ELIAS R0.docx" && git commit -m "Salva estado atual" && git push
-
-# 3. Fechar o Word
 osascript -e 'tell application "Microsoft Word" to if (count of documents) > 0 then close active document saving yes'
-```
 
-## Fluxo Obrigatório Após Modificar O Documento
+# --- executar a atividade ---
 
-```bash
-# 1. Commitar
+# APÓS modificar o documento:
 git add "MC-AMADEU ELIAS R0.docx" && git commit -m "Descrição" && git push
-
-# 2. Reabrir no Word
 osascript -e 'tell application "Microsoft Word" to open "/Users/carlos_adao/Documents/2AEngenharia/Amadeu_Elias/MC-AMADEU ELIAS R0.docx"'
 ```
 
