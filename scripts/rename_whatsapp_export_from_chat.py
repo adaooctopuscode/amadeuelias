@@ -78,6 +78,11 @@ def main() -> None:
         help="Pasta da exportação (com _chat.txt)",
     )
     ap.add_argument("--dry-run", action="store_true", help="Só mostrar, não renomear")
+    ap.add_argument(
+        "--only-with-chat-key",
+        action="store_true",
+        help="Só renomeia ficheiros cujo nome coincide com <anexado:...> no chat (útil após sincronizar só anexos novos sem retocar ficheiros já renomeados).",
+    )
     args = ap.parse_args()
     folder = Path(args.folder)
     chat = folder / "_chat.txt"
@@ -96,6 +101,8 @@ def main() -> None:
             continue
         prefix, ext = file_prefix_and_ext(name)
         if not prefix:
+            continue
+        if args.only_with_chat_key and name not in cap_map:
             continue
         cap = cap_map.get(name, "nao_listado_no_chat")
         slug = slugify(cap)
