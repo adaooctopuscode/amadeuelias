@@ -7,3 +7,9 @@
 
 # macOS
 .DS_Store
+
+# Export WhatsApp: ZIP na raiz e duplicados pesados dentro da pasta do chat
+# (o memorial oficial é só MC-AMADEU ELIAS R0.docx na raiz do repositório)
+/WhatsApp Chat - PONTE AMADEU.zip
+WhatsApp Chat - PONTE AMADEU/*.docx
+WhatsApp Chat - PONTE AMADEU/**/*.zip
