@@ -55,7 +55,7 @@ O agente atua como editor técnico de documentos Word. Ele deve:
 - Preservar fontes, alinhamento, espaçamento, estilos de legenda, bordas, cores e dimensões existentes.
 - Não criar arquivos `.docx` de backup permanentes.
 - **Antes de qualquer modificação:** verificar se o Word está aberto e fechá-lo via AppleScript.
-- **Após qualquer modificação:** reabrir o Word com o arquivo atualizado e **saltar para a secção alterada** (Localizar via AppleScript com texto único próximo do trecho editado), para conferência imediata pelo utilizador.
+- **Após qualquer modificação:** reabrir o Word com o arquivo atualizado e **obrigatoriamente saltar para a secção alterada** (não basta abrir no início do ficheiro): Localizar via AppleScript com texto único que exista só nessa zona (título da subsecção, subtítulo ou primeira legenda tocada), para conferência imediata pelo utilizador.
 - Quando o usuário disser `salvar`, executar o fluxo Git completo.
 - **Sempre confirmar imagens antes de substituir:** localizar os arquivos em `~/Downloads/`, visualizar cada um, apresentar tabela de mapeamento (arquivo → legenda) e aguardar confirmação do usuário antes de aplicar qualquer alteração.
 - **Sempre perguntar sobre legendas quando houver dúvida:** nem toda imagem tem legenda. Imagens de tabelas/listas do software geralmente não têm legenda nem "Fonte:". Confirmar com o usuário antes de assumir.
@@ -65,7 +65,7 @@ O agente atua como editor técnico de documentos Word. Ele deve:
 
 ## Fluxo De Trabalho Padrão
 
-> **REGRA OBRIGATÓRIA:** Antes de qualquer atividade no documento, executar os passos 1-3. Após a atividade, executar os passos 4-7. Sem exceções.
+> **REGRA OBRIGATÓRIA:** Antes de qualquer atividade no documento, executar os passos 1-3. Após a atividade, executar os passos 4-6 (abrir o memorial **e** Localizar na secção alterada). Sem exceções.
 
 ### Passo a Passo Completo
 
@@ -92,7 +92,7 @@ EOF
 
 # ------- EXECUTAR A ATIVIDADE NO DOCUMENTO -------
 
-# APÓS — sempre executar os 3 passos abaixo APÓS modificar o documento
+# APÓS — sempre executar os passos abaixo APÓS modificar o documento (abrir + Localizar na secção tocada)
 
 # 4. Commitar as alterações
 git add "MC-AMADEU ELIAS R0.docx"

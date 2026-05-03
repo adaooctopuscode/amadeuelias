@@ -9,8 +9,7 @@ Repositório: `adaooctopuscode/amadeuelias`
 
 - Sempre responder em **português**.
 - Antes de qualquer modificação no `.docx`, verificar se o Word está aberto e fechá-lo.
-- Após modificar, commitar e reabrir o Word.
-- **Sempre após alterar o `.docx`:** reabrir o Word e **posicionar o documento na secção alterada** (AppleScript «Localizar» com um texto único próximo do trecho editado — ex. título da subsecção ou primeira legenda tocada), para o utilizador conferir de imediato.
+- Após modificar, commitar, reabrir o Word e **obrigatoriamente** saltar para a **secção alterada** (não basta abrir no início do documento): usar AppleScript «Localizar» com um texto único que exista só nessa zona — ex. título da subsecção, subtítulo ou primeira legenda inserida/alterada — para o utilizador conferir de imediato.
 - Quando o usuário digitar `salvar`, executar `git add + commit + push` automaticamente.
 
 ## Estrutura Do Documento
@@ -26,7 +25,7 @@ O documento é um memorial técnico de ponte com 7 tabuleiros e as seguintes se�
 
 ## Fluxo Obrigatório — Sem Exceções
 
-> Antes de qualquer atividade no documento: salvar → fechar Word → executar → commitar → reabrir Word.
+> Antes de qualquer atividade no documento: salvar → fechar Word → executar → commitar → reabrir Word **na secção alterada** (Localizar).
 
 ```bash
 # ANTES de modificar o documento:
@@ -39,20 +38,20 @@ osascript -e 'tell application "Microsoft Word" to if (count of documents) > 0 t
 # APÓS modificar o documento:
 git add "MC-AMADEU ELIAS R0.docx" && git commit -m "Descrição" && git push
 osascript -e 'tell application "Microsoft Word" to open "/Users/carlos_adao/Documents/2AEngenharia/Amadeu_Elias/MC-AMADEU ELIAS R0.docx"'
-# Posicionar na secção alterada (substituir TEXTO_UNICO pelo trecho real, ex. título da subsecção):
-# osascript <<'APPLESCRIPT'
-# tell application "Microsoft Word"
-#   activate
-#   delay 1.5
-#   tell find object of selection
-#     clear formatting
-#     set content to "TEXTO_UNICO_PROXIMO_DA_ALTERACAO"
-#     set forward to true
-#     set wrap to find ask
-#     execute find
-#   end tell
-# end tell
-# APPLESCRIPT
+# Obrigatório: posicionar na secção alterada (substituir a string por texto único do trecho editado)
+osascript <<'APPLESCRIPT'
+tell application "Microsoft Word"
+  activate
+  delay 1.5
+  tell find object of selection
+    clear formatting
+    set content to "TEXTO_UNICO_PROXIMO_DA_ALTERACAO"
+    set forward to true
+    set wrap to find ask
+    execute find
+  end tell
+end tell
+APPLESCRIPT
 ```
 
 ## Padrão De Figuras No Documento
