@@ -66,6 +66,14 @@ O horário do arquivo corresponde ao horário de envio no WhatsApp. Use isso par
 - Validar sempre com `unzip -t "MC-AMADEU ELIAS R0.docx"`.
 - Em caso de corrupção: `git checkout HEAD -- "MC-AMADEU ELIAS R0.docx"`.
 
+## Confirmação Obrigatória Antes De Substituir Imagens
+
+1. Localizar arquivos em `~/Downloads/` e visualizar cada um
+2. Apresentar tabela: `| # | Arquivo | Conteúdo identificado |`
+3. **Aguardar confirmação do usuário** antes de qualquer alteração
+4. Quando houver dúvida sobre legendas, **perguntar sempre**
+5. Imagens de tabelas/listas do software geralmente **não têm legenda nem "Fonte:"** — confirmar com o usuário
+
 ## Comando "salvar"
 
 Quando o usuário digitar apenas `salvar`:

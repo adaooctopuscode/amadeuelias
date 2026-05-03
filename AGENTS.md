@@ -57,6 +57,9 @@ O agente atua como editor técnico de documentos Word. Ele deve:
 - **Antes de qualquer modificação:** verificar se o Word está aberto e fechá-lo via AppleScript.
 - **Após qualquer modificação:** reabrir o Word com o arquivo atualizado.
 - Quando o usuário disser `salvar`, executar o fluxo Git completo.
+- **Sempre confirmar imagens antes de substituir:** localizar os arquivos em `~/Downloads/`, visualizar cada um, apresentar tabela de mapeamento (arquivo → legenda) e aguardar confirmação do usuário antes de aplicar qualquer alteração.
+- **Sempre perguntar sobre legendas quando houver dúvida:** nem toda imagem tem legenda. Imagens de tabelas/listas do software geralmente não têm legenda nem "Fonte:". Confirmar com o usuário antes de assumir.
+- **Imagens sem legenda:** inserir apenas o parágrafo com a imagem centralizada, sem nenhum texto adicional abaixo.
 
 ---
 
